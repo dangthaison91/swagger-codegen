@@ -135,7 +135,7 @@ public class Swift3Codegen extends DefaultCodegen implements CodegenConfig {
         typeMapping.put("number", "Double");
         typeMapping.put("double", "Double");
         typeMapping.put("object", "Any");
-        typeMapping.put("file", "URL");
+        typeMapping.put("file", "Data");
         typeMapping.put("binary", "Data");
         typeMapping.put("ByteArray", "Data");
         typeMapping.put("UUID", "UUID");
@@ -221,6 +221,7 @@ public class Swift3Codegen extends DefaultCodegen implements CodegenConfig {
         supportingFiles.add(new SupportingFile("AlamofireImplementations.mustache", sourceFolder,
                 "AlamofireImplementations.swift"));
         supportingFiles.add(new SupportingFile("Extensions.mustache", sourceFolder, "Extensions.swift"));
+        supportingFiles.add(new SupportingFile("Data+MimeType.mustache", sourceFolder, "Data+MimeType.swift"));
         supportingFiles.add(new SupportingFile("Models.mustache", sourceFolder, "Models.swift"));
         supportingFiles.add(new SupportingFile("APIs.mustache", sourceFolder, "APIs.swift"));
         supportingFiles.add(new SupportingFile("git_push.sh.mustache", "", "git_push.sh"));
@@ -280,7 +281,7 @@ public class Swift3Codegen extends DefaultCodegen implements CodegenConfig {
 
     @Override
     public boolean isDataTypeFile(String dataType) {
-        return dataType != null && dataType.equals("URL");
+        return dataType != null && dataType.equals("Data");
     }
 
     @Override

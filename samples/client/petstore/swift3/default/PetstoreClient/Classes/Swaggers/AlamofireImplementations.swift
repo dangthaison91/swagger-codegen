@@ -31,17 +31,6 @@ open class AlamofireRequestBuilder<T>: RequestBuilder<T> {
     }
 
     /**
-     May be overridden by a subclass if you want to control the Content-Type
-     that is given to an uploaded form part.
-
-     Return nil to use the default behavior (inferring the Content-Type from
-     the file extension).  Return the desired Content-Type otherwise.
-     */
-    open func contentTypeForFormPart(fileURL: URL) -> String? {
-        return nil
-    }
-
-    /**
      May be overridden by a subclass if you want to control the request
      configuration (e.g. to override the cache policy).
      */
@@ -65,12 +54,13 @@ open class AlamofireRequestBuilder<T>: RequestBuilder<T> {
             manager.upload(multipartFormData: { mpForm in
                 for (k, v) in self.parameters! {
                     switch v {
-                    case let fileURL as URL:
-                        if let mimeType = self.contentTypeForFormPart(fileURL: fileURL) {
-                            mpForm.append(fileURL, withName: k, fileName: fileURL.lastPathComponent, mimeType: mimeType)
+                    case let fileData as Data:
+
+                        if let mimeType = fileData.mimeType) {
+                            mpForm.append(fileData, withName: k, fileName: k, mimeType: mimeType)
                         }
                         else {
-                            mpForm.append(fileURL, withName: k)
+                            mpForm.append(fileData, withName: k)
                         }
                         break
                     case let string as String:

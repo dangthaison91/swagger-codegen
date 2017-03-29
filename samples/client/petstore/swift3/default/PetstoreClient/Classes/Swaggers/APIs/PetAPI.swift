@@ -456,7 +456,7 @@ open class PetAPI: APIBase {
      - parameter file: (form) file to upload (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func uploadFile(petId: Int64, additionalMetadata: String? = nil, file: URL? = nil, completion: @escaping ((_ data: ApiResponse?,_ error: Error?) -> Void)) {
+    open class func uploadFile(petId: Int64, additionalMetadata: String? = nil, file: Data? = nil, completion: @escaping ((_ data: ApiResponse?,_ error: Error?) -> Void)) {
         uploadFileWithRequestBuilder(petId: petId, additionalMetadata: additionalMetadata, file: file).execute { (response, error) -> Void in
             completion(response?.body, error);
         }
@@ -482,7 +482,7 @@ open class PetAPI: APIBase {
 
      - returns: RequestBuilder<ApiResponse> 
      */
-    open class func uploadFileWithRequestBuilder(petId: Int64, additionalMetadata: String? = nil, file: URL? = nil) -> RequestBuilder<ApiResponse> {
+    open class func uploadFileWithRequestBuilder(petId: Int64, additionalMetadata: String? = nil, file: Data? = nil) -> RequestBuilder<ApiResponse> {
         var path = "/pet/{petId}/uploadImage"
         path = path.replacingOccurrences(of: "{petId}", with: "\(petId)", options: .literal, range: nil)
         let URLString = PetstoreClientAPI.basePath + path
