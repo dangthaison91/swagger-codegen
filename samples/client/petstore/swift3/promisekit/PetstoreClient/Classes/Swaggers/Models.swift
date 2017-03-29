@@ -282,8 +282,6 @@ class Decoders {
             let sourceDictionary = source as! [AnyHashable: Any]
 
             let instance = Cat()
-            instance.className = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["className"] as AnyObject?)
-            instance.color = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["color"] as AnyObject?)
             instance.declawed = Decoders.decodeOptional(clazz: Bool.self, source: sourceDictionary["declawed"] as AnyObject?)
             return instance
         }
@@ -341,8 +339,6 @@ class Decoders {
             let sourceDictionary = source as! [AnyHashable: Any]
 
             let instance = Dog()
-            instance.className = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["className"] as AnyObject?)
-            instance.color = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["color"] as AnyObject?)
             instance.breed = Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["breed"] as AnyObject?)
             return instance
         }

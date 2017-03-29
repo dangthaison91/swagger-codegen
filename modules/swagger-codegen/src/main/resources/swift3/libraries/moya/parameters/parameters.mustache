@@ -1,0 +1,41 @@
+var parameters: Parameters? {
+            var compositeParameters: CompositeParameters = CompositeParameters()
+            {{#hasHeaderParams}}
+
+            var headerParams: [String: String] = [:]
+            {{#headerParams}}
+            headerParams["{{baseName}}"] = {{paramName}}
+            {{/headerParams}}
+            compositeParameters.headerParameters = headerParams
+            {{/hasHeaderParams}}
+            {{#hasQueryParams}}
+
+            var queryParams: Parameters = [:]
+            {{#queryParams}}
+            queryParams["{{baseName}}"] = {{paramName}}
+            {{/queryParams}}
+            compositeParameters.queryParameters = queryParams
+            {{/hasQueryParams}}
+            {{#hasBodyParam}}
+
+            var bodyParams: Parameters = [:]
+            {{#bodyParam}}
+            bodyParams["{{baseName}}"] = {{paramName}}
+            {{/bodyParam}}
+            compositeParameters.bodyParameters = bodyParams
+            {{/hasBodyParam}}
+            {{^hasBodyParam}}
+            {{#hasFormParams}}
+
+            var formParams: Parameters = [:]
+            {{#formParams}}
+            {{^isMultipart}}
+            formParams["{{baseName}}"] = {{paramName}}
+            {{/isMultipart}}
+            {{/formParams}}
+            compositeParameters.formParameters = formParams
+            {{/hasFormParams}}
+            {{/hasBodyParam}}
+
+            return compositeParameters.toParameters()
+        }

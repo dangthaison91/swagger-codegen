@@ -1,0 +1,13 @@
+var task: Taks {
+            var formData: [Moya.MultipartFormData] = []
+            {{#formParams}}
+            {{#isMultipart}}
+
+            let {{paramName}}Data: Moya.MultipartFormData(provider: .data({{paramName}}), name: "{{baseName}}", fileName: "{{baseName}}", mimeType: {{paramName}}.mimeType)
+            formData.append({{paramName}}Data)
+
+            {{/isMultipart}}
+            {{/formParams}}
+            return .upload(.multipart(formData))
+        }
+        
