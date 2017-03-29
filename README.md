@@ -6,16 +6,16 @@
 1. Install `Java JDK 7/8`
 2. Install `Maven` (should install via `brew` on Mac OSX)
 3. Clone this repo: [https://github.com/dangthaison91/swagger-codegen/](https://github.com/dangthaison91/swagger-codegen/)
-4. Switch to branch: `swift3_moya`
-5. Open repo folder: `swagger-codegen`
-6. Run `bin/swift3-petstore-moya-rxswift.sh` via Terminal
-
-###### If you cannot execute script (step 6), please follow these steps:
-1. Open Terminal then `cd` into `swagger-codegen` folder
-2. Run: `mvn clean package -Dmaven.test.skip=true`
+4. Checkout branch: `swift3_moya`
+5. Open Terminal then `cd` into `swagger-codegen` folder
+6. Run: `mvn clean package -Dmaven.test.skip=true` to compile
 
 ## Usage
-Execute:
+1. Open repo folder: `swagger-codegen`
+2. Run `bin/swift3-petstore-moya-rxswift.sh` via Terminal
+
+
+###### If you cannot execute script, please execute:
 
 ```
 java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate
@@ -26,8 +26,7 @@ java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate
 -o samples/client/petstore/swift3/moya
 ```
 
-###### If you want to customize command:
-
+###### Some options if you want to customize:
 ```
 -t: Your templates
 -i: Your swagger spec file yaml/json
