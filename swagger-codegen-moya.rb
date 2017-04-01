@@ -6,7 +6,7 @@ class SwaggerCodegenMoya < Formula
   desc "Swagger Generator for Swift Moya "
   homepage "https://github.com/dangthaison91/swagger-codegen-moya/"
   url "https://github.com/dangthaison91/swagger-codegen-moya/archive/2.2.3.tar.gz"
-  sha256 "b12561158f2607daabd58163b13f1f323968b4e7f206013c4b44c9bd2aa12360"
+  sha256 "828b0a66a31dd98ea5b0bbd1277116799c1dafb1d7e239f0405a5b1f36dda5e2"
 
   depends_on :java => "1.7+"
   depends_on "maven" => :build
