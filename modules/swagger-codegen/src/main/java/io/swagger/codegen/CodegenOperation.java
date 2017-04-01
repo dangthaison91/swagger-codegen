@@ -93,6 +93,15 @@ public class CodegenOperation {
     }
 
     /**
+     * Check if there's path parameter only
+     *
+     * @return true if only path parameter exists, false otherwise
+     */
+    public boolean getHasPathParamsOnly() {
+        return getHasPathParams() && !getHasHeaderParams() && !getHasQueryParams() && !getHasBodyParam() && !getHasFormParams();
+    }
+
+    /**
      * Check if there's at least one example parameter
      *
      * @return true if examples parameter exists, false otherwise
