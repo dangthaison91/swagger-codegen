@@ -59,10 +59,12 @@ open class {{classname}}: {{#parent}}{{{parent}}}{{/parent}} {
 {{/unwrapRequired}}
 }
 
-extension classname: Mappable {
+extension {{classname}}: Mappable {
 
     func mapping(map: Map) {
-        name <- map["{{baseName}}"]
+        {{#vars}}
+        {{name}} <- map["{{baseName}}"]
+        {{/vars}}
     }
 }
 {{/vars.isEmpty}}
