@@ -25,6 +25,7 @@ import java.util.regex.Pattern;
 public class Swift3MoyaCodegen extends AbstractSwift3Codegen {
 
     protected String[] responseAs = new String[0];
+    protected String apiDocPath = "docs";
 
     @Override
     public String getName() {
@@ -35,7 +36,7 @@ public class Swift3MoyaCodegen extends AbstractSwift3Codegen {
         super();
         embeddedTemplateDir = templateDir = "swift3/libraries/moya";
         typeMapping.put("file", "Data");
-
+        apiDocTemplateFiles.put("api_doc.mustache", ".md" );
     }
 
     @Override
@@ -43,6 +44,7 @@ public class Swift3MoyaCodegen extends AbstractSwift3Codegen {
         super.processOpts();
 
         supportingFiles.add(new SupportingFile("Podspec.mustache", "", projectName + ".podspec"));
+        supportingFiles.add(new SupportingFile("README.mustache", "", "README.md"));
         supportingFiles.add(new SupportingFile("Cartfile.mustache", "", "Cartfile"));
         supportingFiles.add(new SupportingFile("Models.mustache", sourceFolder, "Models.swift"));
         supportingFiles.add(new SupportingFile("APIs.mustache", sourceFolder, "API.swift"));
@@ -50,6 +52,11 @@ public class Swift3MoyaCodegen extends AbstractSwift3Codegen {
         supportingFiles.add(new SupportingFile("Data+MimeType.mustache", sourceFolder, "Data+MimeType.swift"));
     }
 
+    @Override
+    public String apiDocFileFolder() {
+        return outputFolder + File.separator + sourceFolder + File.separator + apiDocPath;
+    }
+    
     @Override
     public String toApiName(String name) {
         if (name.length() == 0)
