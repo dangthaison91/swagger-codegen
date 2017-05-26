@@ -66,6 +66,7 @@ public abstract class AbstractSwift3Codegen extends DefaultCodegen implements Co
         embeddedTemplateDir = templateDir = "swift3";
         apiPackage = File.separator + "APIs";
         modelPackage = File.separator + "Models";
+        apiDocPackage = File.separator + "API Documentation"
 
         languageSpecificPrimitives = new HashSet<>(
                 Arrays.asList(
@@ -212,6 +213,11 @@ public abstract class AbstractSwift3Codegen extends DefaultCodegen implements Co
     @Override
     public String apiFileFolder() {
         return outputFolder + File.separator + sourceFolder + apiPackage().replace('.', File.separatorChar);
+    }
+
+    @Override
+    public String apiDocFileFolder() {
+        return outputFolder + File.separator + sourceFolder + apiDocPackage().replace('.', File.separatorChar);
     }
 
     @Override
