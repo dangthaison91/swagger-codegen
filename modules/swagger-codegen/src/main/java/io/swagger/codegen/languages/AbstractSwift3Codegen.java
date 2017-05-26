@@ -44,6 +44,8 @@ public abstract class AbstractSwift3Codegen extends DefaultCodegen implements Co
     protected boolean unwrapRequired;
     protected boolean swiftUseApiNamespace;
     protected String sourceFolder = "Classes" + File.separator + "Swaggers";
+    protected String apiDocPath = "docs";
+
     private static final Pattern PATH_PARAM_PATTERN = Pattern.compile("\\{[a-zA-Z_]+\\}");
 
     @Override
@@ -63,6 +65,7 @@ public abstract class AbstractSwift3Codegen extends DefaultCodegen implements Co
         outputFolder = "generated-code" + File.separator + "swift";
         modelTemplateFiles.put("model.mustache", ".swift");
         apiTemplateFiles.put("api.mustache", ".swift");
+        apiDocTemplateFiles.put( "api_doc.mustache", ".md" );
         embeddedTemplateDir = templateDir = "swift3";
         apiPackage = File.separator + "APIs";
         modelPackage = File.separator + "Models";
@@ -212,6 +215,11 @@ public abstract class AbstractSwift3Codegen extends DefaultCodegen implements Co
     @Override
     public String apiFileFolder() {
         return outputFolder + File.separator + sourceFolder + apiPackage().replace('.', File.separatorChar);
+    }
+
+    @Override
+    public String apiDocFileFolder() {
+        return outputFolder + File.separator + sourceFolder + File.separator + apiDocPath;
     }
 
     @Override
